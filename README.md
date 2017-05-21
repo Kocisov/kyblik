@@ -1,5 +1,10 @@
+<p align="center">
+  <img src="http://svgshare.com/i/1eX.svg" alt="" title="bucket" width="100" />
+</p>
+
 # Kyblik
-> Programming language
+> Small Programming language which compiles into JavaScript
+##### Work in progress!
 
 ## Installation
 ```bash

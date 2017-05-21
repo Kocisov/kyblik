@@ -1,7 +1,7 @@
 {
   "name": "kyblik",
   "version": "0.1.0",
-  "description": "Small language which compiles into JavaScript",
+  "description": "Small programming language which compiles into JavaScript",
   "main": "lib/index",
   "repository": "kocisov/kyblik",
   "author": "kocisov",
