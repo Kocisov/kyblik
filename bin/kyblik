@@ -1,0 +1,60 @@
+#!/usr/bin/env node
+const kyblik = require('../lib');
+const chalk = require('chalk');
+const fs = require('fs-extra');
+const yargs = require('yargs');
+const clear = require('clear');
+
+const argv = yargs
+  .version(() => {
+    return chalk.green(`\nKyblik version is ${require('../package.json').version}\n`);
+  })
+  .help('h')
+  .usage('Usage: kyblik -f file.kyblik -o file.js')
+  .string('file')
+  .string('output')
+  .alias('f', 'file')
+  .alias('o', 'output')
+  .alias('v', 'version')
+  .alias('h', 'help')
+  .describe('f', 'Entry file')
+  .describe('o', 'Output file')
+  .demandOption('file')
+  .demandOption('output')
+  .argv;
+
+const green = (content, log) => {
+  if (log) return console.log(chalk.green(content));
+  return chalk.green(content);
+}
+
+const white = (content, log) => {
+  if (log) return console.log(chalk.white(content));
+  return chalk.white(content);
+}
+
+const red = (content, log) => {
+  if (log) return console.log(chalk.red(content));
+  return chalk.red(content);
+}
+
+clear();
+let code = ``;
+
+try {
+  code = fs.readFileSync(argv.file, 'utf-8');
+} catch(e) {
+  red(`Couldn't open ${white(argv.file)}!`, true);
+  process.exit();
+}
+
+const output = kyblik(code);
+
+try {
+  fs.writeFileSync(argv.output, output);
+} catch(e) {
+  red(`Couldn't compile ${white(argv.file)} into ${white(argv.output)} file!`, true);
+  process.exit();
+}
+
+green(`Successfully compiled ${white(argv.file)} into ${white(argv.output)} file!`, true);

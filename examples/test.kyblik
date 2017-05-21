@@ -1,0 +1,28 @@
+a = 3
+
+{"
+  if (a !== 4) {
+    a = 4
+  }
+"}
+
+xd = {"
+  lol()
+"}
+
+l = debounce(func {
+  log(1)
+} 300)
+
+func something {
+  input(test: string, num: number)
+  output(num)
+
+  log(isNumber(test))
+  log(isNumber(num))
+  log(isNumber("test"))
+  log(isNumber(3))
+}(callable as *3)
+
+log(*3('string', 3))
+n = *3('string', 12)
